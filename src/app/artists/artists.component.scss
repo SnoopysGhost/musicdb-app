@@ -1,3 +1,6 @@
-.artistList {
-    padding: 48px;
+.artistContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

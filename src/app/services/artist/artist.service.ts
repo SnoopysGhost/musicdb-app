@@ -11,6 +11,7 @@ import { HttpService } from '../http/http.service';
 })
 export class ArtistService {
   artists = new Subject<Artist[]>();
+  private isSearching = false;
   private activeArtist: Artist | undefined;
 
   constructor(private httpService: HttpService) {}
@@ -53,17 +54,21 @@ export class ArtistService {
 
   getTopArtists() {
     // return top artists for default list
-    return this.httpService.get('chart').subscribe((topCharts: any) => {
-      this.artists.next(topCharts.artists.data);
-    });
+    if (!this.isSearching) {
+      return this.httpService.get('chart').subscribe((topCharts: any) => {
+        this.artists.next(topCharts.artists.data);
+      });
+    }
+    return;
   }
 
   searchArtists(searchText: string) {
     if (!searchText) {
       return this.getTopArtists();
     }
+    this.isSearching = true;
     return this.httpService.get(`search/artist?q=${searchText}`).subscribe((artists: any) => {
-      debugger;
+      this.isSearching = false;
       this.artists.next(artists.data);
     });
   }

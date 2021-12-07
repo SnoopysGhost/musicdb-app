@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ArtistService } from 'src/app/services/artist/artist.service';
 
 @Component({
@@ -8,14 +9,15 @@ import { ArtistService } from 'src/app/services/artist/artist.service';
 })
 export class FilterComponent implements OnInit {
 
-  constructor(private artistService: ArtistService) { }
+  constructor(private artistService: ArtistService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  searchForArtist(event: any) {
+  searchForArtist(event: any): void {
     const searchText = event.target.value;
     this.artistService.searchArtists(searchText);
+    this.router.navigateByUrl('artists');
   }
 
 }

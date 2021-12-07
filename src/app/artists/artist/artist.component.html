@@ -1,8 +1,6 @@
-<div class="artistCard" >
-    <span *ngIf="artist" (click)="onArtistClick()">
-        <img [src]="artist.picture" />
-        <h4>{{ artist.name }}</h4>
-        <p>{{ artist.numberOfFans }}</p>
-        <p>{{ artist.numberOfAlbums }}</p>
-    </span>
+<div class="artistCard" *ngIf="artist" (click)="onArtistClick()">
+  <img [src]="artist.picture" alt=""/>
+  <p class="artistName">{{ artist.name }}</p>
+  <p>{{ artist.numberOfFans }} Fans</p>
+  <p>{{ artist.numberOfAlbums }} Albums</p>
 </div>

@@ -1,0 +1,5 @@
+<div class="row artistList">
+    <div class="col-sm-3" *ngFor="let artist of artists; index as i">
+        <app-artist [id]="artist.id"></app-artist>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Album } from 'src/app/models/album';
 import { Artist } from 'src/app/models/artist';
@@ -16,7 +16,7 @@ export class ArtistService {
 
   constructor(private httpService: HttpService) {}
 
-  getArtistTopTracks(artistId: number | undefined) {
+  getArtistTopTracks(artistId: number | undefined): Observable<Track[]> {
     return this.httpService.get(`artist/${artistId}/top?limit=5`).pipe(
       map((responseData: any) => {
         const tracks = responseData.data.map((track: any) => {
@@ -27,7 +27,7 @@ export class ArtistService {
     );
   }
 
-  getArtistAlbums(artistId: number | undefined) {
+  getArtistAlbums(artistId: number | undefined): Observable<Album[]> {
     return this.httpService.get(`artist/${artistId}/albums`).pipe(
       map((responseData: any) => {
         const albums = responseData.data.map((album: any) => {
@@ -38,7 +38,7 @@ export class ArtistService {
     );
   }
 
-  getArtist(artistId: number | undefined) {
+  getArtist(artistId: number | undefined): Observable<Artist> {
     return this.httpService.get(`artist/${artistId}`).pipe(
       map((artist: any) => {
 
@@ -54,7 +54,7 @@ export class ArtistService {
     );
   }
 
-  getTopArtists() {
+  getTopArtists(): Subscription | void  {
     // return top artists for default list
     if (!this.isSearching) {
       return this.httpService.get('chart').subscribe((topCharts: any) => {
@@ -64,7 +64,7 @@ export class ArtistService {
     return;
   }
 
-  searchArtists(searchText: string) {
+  searchArtists(searchText: string): Subscription | void {
     if (!searchText) {
       return this.getTopArtists();
     }

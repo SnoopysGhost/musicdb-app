@@ -1,9 +1,12 @@
-<div>
-  <table>
-    <tbody>
-      <tr *ngFor="let track of tracks; index as i">
-        <app-track [index]="i + 1" [track]="track"></app-track>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section>
+  <h2>Top Tracks</h2>
+  <div class="trackList">
+    <table>
+      <tbody>
+        <tr *ngFor="let track of tracks; index as i">
+          <app-track [index]="i + 1" [track]="track"></app-track>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

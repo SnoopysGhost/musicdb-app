@@ -1,7 +1,9 @@
-<div class="artistDetails-container">
-  <img [src]="artist?.picture" alt="" />
-  <h1>{{ artist?.name }}</h1>
-  <p>{{artist?.numberOfFans}}</p>
-</div>
+<section *ngIf="artist">
+  <div class="artistDetails-container">
+    <img [src]="artist?.picture" alt="" />
+    <h1>{{ artist?.name }}</h1>
+    <p>{{ artist?.numberOfFans }}</p>
+  </div>
+</section>
 <app-track-list [tracks]="tracks"></app-track-list>
 <app-album-list [albums]="albums"></app-album-list>

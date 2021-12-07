@@ -11,7 +11,7 @@ import { ArtistService } from '../services/artist/artist.service';
   styleUrls: ['./artist-detail.component.scss'],
 })
 export class ArtistDetailComponent implements OnInit {
-  artist: Artist | undefined;
+  artist!: Artist;
   tracks: Track[] = [];
   albums: Album[] = [];
   constructor(

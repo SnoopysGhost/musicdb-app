@@ -16,7 +16,7 @@ export class ArtistService {
   constructor(private httpService: HttpService) {}
 
   getArtistTopTracks(artistId: number | undefined) {
-    return this.httpService.get(`artist/${artistId}/top?limit=10`).pipe(
+    return this.httpService.get(`artist/${artistId}/top?limit=5`).pipe(
       map((responseData: any) => {
         const tracks = responseData.data.map((track: any) => {
           return new Track(track.id, track.title, track.duration);

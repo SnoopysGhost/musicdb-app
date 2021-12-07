@@ -41,10 +41,12 @@ export class ArtistService {
   getArtist(artistId: number | undefined) {
     return this.httpService.get(`artist/${artistId}`).pipe(
       map((artist: any) => {
+
         return new Artist(
           artist.id,
           artist.name,
           artist.picture,
+          artist.picture_xl,
           artist.nb_fan,
           artist.nb_album
         );

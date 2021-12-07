@@ -1,9 +1,18 @@
-<section *ngIf="artist">
-  <div class="artistDetails-container">
-    <img [src]="artist?.picture" alt="" />
-    <h1>{{ artist?.name }}</h1>
-    <p>{{ artist?.numberOfFans }}</p>
-  </div>
-</section>
-<app-track-list [tracks]="tracks"></app-track-list>
-<app-album-list [albums]="albums"></app-album-list>
+<div class="row" >
+    <div class="col-sm-7 coverArt" [ngStyle]="{'background-image': 'url(' + artist.largePicture + ')'}">
+        <section *ngIf="artist">
+            <div class="artistDetailsContainer" >
+              <h1 class="artistText">{{ artist?.name }}</h1>
+              <p class="artistText">{{ artist?.numberOfFans }} Fans</p>
+            </div>
+          </section>
+    </div>
+    <div class="col-sm-5 tracksListContainer">
+        <app-track-list [tracks]="tracks"></app-track-list>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <app-album-list [albums]="albums"></app-album-list>
+    </div>
+</div>

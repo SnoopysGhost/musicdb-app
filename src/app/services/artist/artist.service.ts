@@ -58,6 +58,16 @@ export class ArtistService {
     });
   }
 
+  searchArtists(searchText: string) {
+    if (!searchText) {
+      return this.getTopArtists();
+    }
+    return this.httpService.get(`search/artist?q=${searchText}`).subscribe((artists: any) => {
+      debugger;
+      this.artists.next(artists.data);
+    });
+  }
+
   setActiveArtist(artist: Artist | undefined): void {
     this.activeArtist = artist;
   }
